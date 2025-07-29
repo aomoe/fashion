@@ -106,4 +106,4 @@ SNSの活用し、メイン層からの広がりを期待し、始めやすい�
 https://www.figma.com/design/kKskB6ZTYT65HEDeE6KcBL/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=HzyxYOoGiWkAHzie-1
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/27fc8f807a4e38d58271c03178ae8c27.png)](https://gyazo.com/27fc8f807a4e38d58271c03178ae8c27)
+[![Image from Gyazo](https://i.gyazo.com/703fda0aa736ed9e4051c4a14499de43.png)](https://gyazo.com/703fda0aa736ed9e4051c4a14499de43)
