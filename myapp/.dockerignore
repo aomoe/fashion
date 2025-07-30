@@ -1,19 +1,15 @@
 # See https://docs.docker.com/engine/reference/builder/#dockerignore-file for more about ignoring files.
 
 # Ignore git directory.
-/.git/
-/.gitignore
+.git/
+.gitignore
 
 # Ignore bundler config.
 /.bundle
 
-# Ignore all environment files (except templates).
+# Ignore all environment files (dotenv).
 /.env*
-!/.env*.erb
-
-# Ignore all default key files.
-/config/master.key
-/config/credentials/*.key
+!/.env.example
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -23,13 +19,12 @@
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
+!/tmp/pids/
 !/tmp/pids/.keep
 
-# Ignore storage (uploaded files in development and any SQLite databases).
+# Ignore storage (uploaded files in development).
 /storage/*
 !/storage/.keep
-/tmp/storage/*
-!/tmp/storage/.keep
 
 # Ignore assets.
 /node_modules/
@@ -40,9 +35,11 @@
 # Ignore CI service files.
 /.github
 
-# Ignore development files
-/.devcontainer
+# Ignore development/test tools.
+/.byebug_history
 
-# Ignore Docker-related files
-/.dockerignore
-/Dockerfile*
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Ignore fly.toml (it's not needed in the Docker image)
+fly.toml
