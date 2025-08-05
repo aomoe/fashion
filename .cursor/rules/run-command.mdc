@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+---
+
+# Docker コンテナ内でのコマンド実行ルール
+
+## 基本方針
+- ユーザーから特別な指示がない限り、すべてのbashコマンドやアプリケーションコマンドは Docker コンテナ内で実行する
+- メインのアプリケーションコンテナは `fashion-web-1` を使用する
+
+## コマンド実行時の注意事項
+
+### 1. コンテナ内でのコマンド実行
+- 基本的なアプリケーション作成・操作コマンドは `docker exec -it fashion-web-1 <command>` の形式で実行する
+- 例：
+  - `rails console` → `docker exec -it fashion-web-1 rails console`
+  - `bundle install` → `docker exec -it fashion-web-1 bundle install`
+  - `rake db:migrate` → `docker exec -it fashion-web-1 rake db:migrate`
+
+### 2. コンテナ状態の確認
+- コマンド実行前に異常が疑われる場合は、まず `docker ps` でコンテナの起動状態を確認する
+- コンテナが停止している場合は `docker compose up -d` で起動する
+
+### 3. 削除操作の確認
+- ファイルやデータベースレコードの削除など、破壊的な操作を行う前は**必ずユーザーに確認を取る**
+- 例：`rm`、`rails destroy`、`rake db:drop`、`docker volume rm` など
+
+### 4. 例外的にホストで実行するコマンド
+- Docker Compose の操作：`docker compose up/down/restart`
+- Git操作：`git add/commit/push` など
+- ファイルエディタでの編集作業
+
+## 実行例
+```bash
+# Rails console
+docker exec -it fashion-web-1 rails console
+
+# Bundle install
+docker exec -it fashion-web-1 bundle install
+
+# Database migration
+docker exec -it fashion-web-1 rake db:migrate
+
+# Generator commands
+docker exec -it fashion-web-1 rails generate model User name:string
+```

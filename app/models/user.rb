@@ -6,12 +6,11 @@ class User < ApplicationRecord
          omniauth_providers: [:google_oauth2]
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: true
 
   enum style_category: {
     straight: 0,
     wave: 1,
-    natural: 2,
+    natural: 2
   }
 
   enum height_range: {
