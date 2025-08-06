@@ -1,0 +1,24 @@
+<h3>My Fashion</h3>
+<div class="center-container">
+  <h2>ログイン</h2>
+
+  <%= form_with model: resource, url: session_path(resource_name), local: true do |f| %>
+    <div class="field">
+      <%= f.label :email, "メール" %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
+    <div class="text-center">
+      アカウントをお持ちでない方は
+      <%= link_to "新規登録", new_user_registration_path %>
+    </div>
+</div>
