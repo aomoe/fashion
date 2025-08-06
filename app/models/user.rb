@@ -7,13 +7,13 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
 
-  enum style_category: {
+  enum :style_category, {
     straight: 0,
     wave: 1,
     natural: 2
   }
 
-  enum height_range: {
+  enum :height_range, {
     under_150: 0,
     range_150_155: 1,
     range_155_160: 2,
