@@ -2,7 +2,7 @@
 <div class="center-container">
   <h2>ログイン</h2>
 
-  <%= form_with model: resource, url: session_path(resource_name), local: true do |f| %>
+  <%= form_with model: resource, url: new_session_path(resource_name), local: true do |f| %>
     <div class="field">
       <%= f.label :email, "メール" %>
       <%= f.email_field :email %>

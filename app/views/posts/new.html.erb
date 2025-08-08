@@ -1,0 +1,39 @@
+<div class="post-form-container">
+  <%= form_with model: @post, url: posts_path, method: :post, local: true do |f| %>
+    <div class="image-section">
+      <div class="image-card">
+        <div class="image-placeholder">
+          <span class="image-icon">🖼</span>
+        </div>
+      </div>
+
+      <div class="slider-row">
+        <span class="icon-dim">✴︎</span>
+        <%= f.range_field :brightness_level, min: 0, max: 100, value: @post.brightness_level || 50, class: "brightness-input" %>
+        <span class="icon-bright">✴︎</span>
+      </div>
+
+      <div class="upload-actions">
+        <label class="upload-button">
+          画像アップロード
+          <%= f.file_field :image, accept: "image/*", class: "hidden-file-input" %>
+        </label>
+      </div>
+    </div>
+
+    <div class="title-section">
+      <label class="title-label">タイトル</label>
+      <%= f.text_field :title, class: "title-textarea" %>
+    </div>
+
+
+    <div class="body-section">
+      <label class="body-label">投稿内容</label>
+      <%= f.text_area :body, rows: 10, class: "body-textarea" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "次へ", class: "primary-button" %>
+    </div>
+  <% end %>
+</div>

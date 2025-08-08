@@ -1,28 +1,37 @@
 class PostsController < ApplicationController
 
-  def naw
+  def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    if @post.present?
-      @post.save
-      redirect_to post_edit_path
-      flash[ :notice ] = "投稿しました"
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to posts_path
+      flash[:notice] = "投稿しました"
     else
-      render new_post_path
-      flash[ :alert ] = "投稿に失敗しました"
+      render :new, status: :unprocessable_entity
+      flash.now[:alert] = "投稿に失敗しました"
     end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user)
   end
+
+  def edit
+  
+  end
+
+  def update
+
+  end
+
 
   private
 
-    def post_params
-      params.require(:post).permit(:title, :body, :post_image, :original_image_url, :adjusted_image_url, :brightness_level).merge(user_id: current_user.id)
-    end
+  def post_params
+    params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level)
+  end
 end
