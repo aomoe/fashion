@@ -1,0 +1,23 @@
+<div class="posts-grid">
+  <% @posts.each do |post| %>
+    <div class="post-card">
+        <div class="post-image">
+            <% if post.image.attached? %>
+              <%= image_tag post.image, size: "300x300" %>
+            <% else %>
+              <div class="no-image">画像なし</div>
+            <% end %>
+        </div>
+
+        <div class="post-info">
+            <div class="user-info">
+                <i class="user-icon"></i>
+                <span class="username"><%= post.user.name %></span>
+            </div>
+            <div class="like-button">
+                <i class="heart-icon"></i>
+            </div>
+        </div>
+    </div>
+  <% end %>
+</div>

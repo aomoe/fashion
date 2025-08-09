@@ -1,5 +1,3 @@
-// Entry point for the build script in your package.json
+// Entry point for the application (Importmap)
 import "@hotwired/turbo-rails"
-import "./controllers"
-import Rails from "@rails/ujs"
-Rails.start()
+import "controllers"
