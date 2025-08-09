@@ -1,7 +1,7 @@
 <header class="main-header">
     <div class="header-container">
         <div class="logo">
-            <%= link_to "My Fashion", (user_signed_in? ? root_path : root_path), class: "logo-link" %>
+            <%= link_to "My Fashion", root_path, class: "logo-link" %>
         </div>
         <nav class="header-nav">
             <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
