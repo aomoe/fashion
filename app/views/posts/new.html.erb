@@ -54,6 +54,20 @@
         </div>
     </div>
 
+    <div class="category-area">
+        <div class="category-header">
+            <span class="category-title">カテゴリ</span>
+        </div>
+        <div class="category-list">
+            <%= f.collection_check_boxes :category_ids, @categories, :id, :name do |b| %>
+                <label class="category-chip">
+                    <%= b.check_box class: "category-checkbox" %>
+                    <span class="category-pill"><%= b.text %></span>
+                </label>
+            <% end %>
+        </div>
+    </div>
+
     <div class="form-actions">
         <%= f.submit "投稿", class: "primary-button" %>
     </div>
