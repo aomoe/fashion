@@ -8,6 +8,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      tag_names = params[:post][:tag_names].to_s.split(/[\,\s　]+/).map(&:strip).reject(&:blank?).uniq
+      tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+      @post.tags = tags
+
       redirect_to posts_path
       flash[:notice] = "投稿しました"
     else

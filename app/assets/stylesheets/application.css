@@ -471,3 +471,117 @@ h3 {
     color: #e25555;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z'/></svg>");
 }
+
+/* タグ */
+.tags-area {
+  border: 1px solid #b6b4b4; /* 枠線の太さと色を指定 */
+  padding: 15px; /* 内側の余白 */
+  border-radius: 15px; /* 角を丸くするオプション */
+  width: 650px;
+  margin-left: 80px;
+  margin-top: 30px;
+}
+
+.tags-section {
+    max-width: 640px;
+    margin: 24px auto 0 auto;
+}
+
+.tags-section .tags-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 200;
+    margin-right: 12px;
+    color: #1a1a1a;
+    vertical-align: middle;
+}
+
+.tags-section .tags-text {
+    display: inline-block;
+    width: calc(100% - 120px);
+    max-width: 520px;
+    height: 44px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid #f4b6c2;
+    background: #fbe1e6;
+    outline: none;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.tags-section .tags-text::placeholder {
+    color: #9b6f79;
+}
+
+.tags-section .tags-add-button {
+    display: inline-block;
+    margin-left: 14px;
+    height: 44px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 12px;
+    background: #f4b6c2;
+    color: #1a1a1a;
+    font-weight: 300;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.tags-section .tags-add-button:hover {
+    background: #f8c6cf;
+}
+
+.tags-preview {
+    position: relative;
+    margin-top: 30px;
+    padding: 28px 20px 20px 20px;
+    min-height: 20px;
+    border: 1px solid #bbb;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 16px;
+}
+
+.tags-preview::before {
+    content: "タグプレビュー";
+    position: absolute;
+    top: -22px;
+    left: -10px;
+    padding: 0 8px;
+    font-size: 12px;
+    font-weight: 200;
+    color: #1a1a1a;
+}
+
+.tag-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 6px;
+    border: 1px solid #f4b6c2;
+    background: #fde7ec;
+    border-radius: 12px;
+    font-weight: 400;
+    color: #1a1a1a;
+}
+
+.tag-chip button {
+    margin-left: 8px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid #1a1a1a;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.tag-chip button:hover {
+    background: #ffe6ea;
+}
