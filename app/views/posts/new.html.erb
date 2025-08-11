@@ -37,8 +37,25 @@
         <%= f.text_area :body, rows: 10, class: "body-textarea" %>
     </div>
 
+    <div class="tags-area">
+        <div data-controller="tags" class="tags-section">
+            <label class="tags-label">タグ(カンマ区切りで追加、Enterでも可)</label>
+            <input type="text"
+                class="tags-text"
+                placeholder="例: カジュアル, 夏, 白"
+                data-tags-target="input"
+                data-action="keydown->tags#handleKeydown" />
+            <button type="button" class="tags-add-button" data-action="click->tags#add">追加</button>
+
+            <div class="tags-preview" data-tags-target="list"></div>
+
+            <%= hidden_field_tag 'post[tag_names]', '',
+                data: { tags_target: 'hidden' } %>
+        </div>
+    </div>
+
     <div class="form-actions">
-        <%= f.submit "次へ", class: "primary-button" %>
+        <%= f.submit "投稿", class: "primary-button" %>
     </div>
     <% end %>
 </div>
