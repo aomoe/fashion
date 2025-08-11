@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.order(:name)
   end
 
   def create
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
       flash[:notice] = "投稿しました"
     else
+      @categories = Category.order(:name)
       render :new, status: :unprocessable_entity
       flash.now[:alert] = "投稿に失敗しました"
     end
@@ -25,17 +27,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-  
+    @post = Post.find(params[:id])
+    @categories = Category.order(:name)
   end
 
   def update
-
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post, notice: '更新しました'
+    else
+      @categories = Category.order(:name)
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level)
+    params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level, category_ids: [])
   end
 end
