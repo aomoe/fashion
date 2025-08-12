@@ -4,8 +4,13 @@ export default class extends Controller {
     static targets = ["input", "list", "hidden"]
 
     connect() {
-        this.tags = []
-        this.syncHidden()
+        const initial = this.hasHiddenTarget ? this.hiddenTarget.value : "";
+        this.tags = (initial || "")
+            .split(/[,\s　]+/)
+            .map((n) => n.trim())
+            .filter((n) => n.length > 0);
+        this.render();
+        this.syncHidden();
     }
 
     handleKeydown(event) {
