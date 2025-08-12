@@ -1,0 +1,79 @@
+<div class="post-detail">
+    <div class="post-main-content">
+
+        <div class="post-image-section">
+            <% if @post.image.attached? %>
+                <%= image_tag @post.image, class: "main-image" %>
+            <% else %>
+                <div class="no-image">画像なし</div>
+            <% end %>
+            </div>
+
+            <div class="post-info-section">
+            <div class="post-header">
+                <span class="username"><%= @post.user.name %></span>
+                <% if user_signed_in? && current_user == @post.user %>
+                <div class="post-actions-menu">
+                    <div class="menu-trigger">⋮</div>
+                    <div class="menu-dropdown">
+                    <%= link_to "編集", edit_post_path(@post), class: "menu-item" %>
+                    <%= button_to "削除", post_path(@post), method: :delete,
+                        data: { turbo_confirm: "本当に削除しますか？" },
+                        class: "menu-item delete-button",
+                        form: { style: 'display: inline;' } %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+
+            <% if @post.title.present? %>
+                <div class="post-title-display">
+                <h4><%= @post.title %></h4>
+                </div>
+            <% end %>
+            <% if @post.body.present? %>
+                <div class="post-description">
+                    <p><%= @post.body %></p>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="post-details-grid">
+        <% if @post.categories.any? %>
+        <div class="detail-section">
+            <span class="detail-label">カテゴリ</span>
+            <span class="detail-value">
+            <%= @post.categories.map(&:name).join(" / ") %>
+            </span>
+        </div>
+        <% end %>
+
+        <% if @post.tags.any? %>
+        <div class="detail-section">
+            <span class="detail-label">タグ</span>
+            <span class="detail-value">
+            <%= @post.tags.map(&:name).join(" / ") %>
+            </span>
+        </div>
+        <% end %>
+
+        <% if @post.style_category.present? %>
+        <div class="detail-section">
+            <span class="detail-label">骨格タイプ</span>
+            <span class="detail-value"><%= enum_display_name(@post, :style_category, @post.style_category) %></span>
+        </div>
+        <% end %>
+
+        <% if @post.height_range.present? %>
+        <div class="detail-section">
+            <span class="detail-label">身長範囲</span>
+            <span class="detail-value"><%= enum_display_name(@post, :height_range, @post.height_range) %></span>
+        </div>
+        <% end %>
+    </div>
+
+    <div class="post-actions">
+        <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-secondary" %>
+    </div>
+</div>

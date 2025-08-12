@@ -28,9 +28,12 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user)
   end
 
+  def show
+    @post =Post.find(params[:id])
+  end
+
   def edit
     @post = Post.find(params[:id])
-    @categories = Category.order(:name)
   end
 
   def update
@@ -40,6 +43,16 @@ class PostsController < ApplicationController
     else
       @categories = Category.order(:name)
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.user == current_user
+      @post.destroy
+      redirect_to posts_path, notice: '投稿を削除しました'
+    else
+      redirect_to @post, alert: '削除権限がありません'
     end
   end
 
