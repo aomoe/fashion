@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_11_043740) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_12_014828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_11_043740) do
     t.integer "brightness_level", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "style_category"
+    t.integer "height_range"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

@@ -8,4 +8,8 @@ class Post < ApplicationRecord
   validates :brightness_level, inclusion: { in: 0..100 }
 
   has_one_attached :image
+
+  enum :style_category, User.style_categories
+  enum :height_range, User.height_ranges
+
 end

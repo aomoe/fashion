@@ -68,6 +68,38 @@
         </div>
     </div>
 
+    <div class="category-area">
+        <div class="category-header">
+            <span class="category-title">骨格</span>
+        </div>
+        <div class="category-list">
+            <% User.style_categories.each_key do |key| %>
+                <label class="category-chip">
+                    <%= f.radio_button :style_category, key, class: "category-checkbox" %>
+                    <span class="category-pill">
+                        <%= enum_display_name(@post, :style_category, key) %>
+                    </span>
+                </label>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="category-area">
+        <div class="category-header">
+            <span class="category-title">身長</span>
+        </div>
+        <div class="category-list">
+            <% User.height_ranges.each_key do |key| %>
+                <label class="category-chip">
+                    <%= f.radio_button :height_range, key, class: "category-checkbox" %>
+                    <span class="category-pill">
+                        <%= enum_display_name(@post, :height_range, key) %>
+                    </span>
+                </label>
+            <% end %>
+        </div>
+    </div>
+
     <div class="form-actions">
         <%= f.submit "投稿", class: "primary-button" %>
     </div>
