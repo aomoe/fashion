@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        style_category:
+          straight: "ストレート"
+          wave: "ウェーブ"
+          natural: "ナチュラル"
+        height_range:
+          under_150: "150㎝未満"
+          range_150_155: "150~155㎝"
+          range_155_160: "155~160㎝"
+          range_160_165: "160~165㎝"
+          range_165_170: "165~170㎝"
+          range_170_175: "170~175㎝"
+          range_175_180: "175~180㎝"
+          over_180: "180㎝以上"
+      user:
+        style_category:
+          straight: "ストレート"
+          wave: "ウェーブ"
+          natural: "ナチュラル"
+        height_range:
+          under_150: "150㎝未満"
+          range_150_155: "150~155㎝"
+          range_155_160: "155~160㎝"
+          range_160_165: "160~165㎝"
+          range_165_170: "165~170㎝"
+          range_170_175: "170~175㎝"
+          range_175_180: "175~180㎝"
+          over_180: "180㎝以上"

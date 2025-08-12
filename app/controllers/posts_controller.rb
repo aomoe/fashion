@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.style_category = current_user.style_category
+    @post.height_range = current_user.height_range
     @categories = Category.order(:name)
   end
 
@@ -45,6 +47,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level, category_ids: [])
+    params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level, :style_category, :height_range, category_ids: [])
   end
 end

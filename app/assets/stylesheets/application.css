@@ -612,6 +612,7 @@ h3 {
     flex-wrap: wrap;
     gap: 14px 22px;
     margin-top: 6px;
+    justify-content: center;
 }
 
 .category-chip {
