@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -49,8 +50,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
   end
 
   def destroy
-    if @post.user == current_user
-      @post.destroy
+    if @post.destroy
       redirect_to posts_path, notice: '投稿を削除しました'
     else
       redirect_to @post, alert: '削除権限がありません'
@@ -70,7 +70,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def authorize_post_owner!
     unless @post.user_id == current_user&.id
-      
+      redirect_to @post, alert: "編集権限がありません"
     end
   end
 end
