@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -28,17 +30,18 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user)
   end
 
-  def show
-    @post =Post.find(params[:id])
-  end
+  def show;end
 
   def edit
-    @post = Post.find(params[:id])
+    @categories = Category.order(:name)
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
+      tag_names = params[:post][:tag_names].to_s.split(/[\,\s　]+/).map(&:strip).reject(&:blank?).uniq
+      tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+      @post.tags = tags
+
       redirect_to @post, notice: '更新しました'
     else
       @categories = Category.order(:name)
@@ -47,9 +50,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.user == current_user
-      @post.destroy
+    if @post.destroy
       redirect_to posts_path, notice: '投稿を削除しました'
     else
       redirect_to @post, alert: '削除権限がありません'
@@ -61,5 +62,15 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :image, :original_image_url, :adjusted_image_url, :brightness_level, :style_category, :height_range, category_ids: [])
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def authorize_post_owner!
+    unless @post.user_id == current_user&.id
+      redirect_to @post, alert: "編集権限がありません"
+    end
   end
 end
