@@ -1,43 +1,77 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_with model: resource, url: registration_path(resource_name), local: true do |f| %>
 
-<%= form_for(resource, as: resource_name, url: new_registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="profile-edit-page">
+    <div class="profile-card profile-card-image" data-controller="image-preview">
+      <div class="image-row">
+        <div class="avatar-box">
+          <% if resource.avatar.attached? %>
+            <%= image_tag url_for(resource.avatar),
+                  class: "avatar-preview",
+                  data: { image_preview_target: "preview" },
+                  alt: "プロフィール画像プレビュー" %>
+          <% else %>
+            <%= image_tag "",
+                  class: "avatar-preview",
+                  data: { image_preview_target: "preview" },
+                  style: "display:none;",
+                  alt: "プロフィール画像プレビュー" %>
+          <% end %>
+          <div class="avatar-placeholder" data-image-preview-target="placeholder"
+              <%= "style='display:none;'" if resource.avatar.attached? %>>
+            <span class="avatar-icon"></span>
+          </div>
+        </div>
+        <div class="image-uploader">
+          <%= f.label :avatar, "プロフィール画像", class: "field-label" %>
+          <label class="upload-button small">
+            画像を選択
+            <%= f.file_field :avatar, accept: "image/*", class: "hidden-file-input", data: { action: "change->image-preview#show", image_preview_target: "input" } %>
+          </label>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="profile-card">
+      <div class="profile-form">
+        <div class="profile-field">
+          <%= f.label :name, "ニックネーム", class: "field-label" %>
+          <%= f.text_field :name, autocomplete: "name", class: "underline-input" %>
+        </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+        <div class="profile-field">
+          <%= f.label :email, "メールアドレス", class: "field-label" %>
+          <%= f.email_field :email, autocomplete: "email", readonly: true, class: "underline-input" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+        <div class="profile-field">
+          <%= f.label :height_range, "身長", class: "field-label" %>
+          <%= f.select :height_range,
+                options_for_select(
+                  User.height_ranges.map { |k, v| [enum_display_name(resource, :height_range, k), k] },
+                  resource.height_range ),
+                {},
+                class: "underline-input" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="profile-field">
+          <%= f.label :style_category, "骨格", class: "field-label" %>
+          <%= f.select :style_category,
+                options_for_select(
+                  User.style_categories.map { |k, v| [enum_display_name(resource, :style_category, k), k] },
+                  resource.style_category ),
+                {},
+                class: "underline-input" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+        <div class="profile-note">
+          自分の骨格タイプが知りたい人は、
+          <%= link_to "こちら", "#", target: "_blank", rel: "noopener" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+    <div class="profile-actions">
+      <%= f.submit "更新", class: "profile-submit-button" %>
+    </div>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>

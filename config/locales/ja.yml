@@ -1,4 +1,37 @@
 ja:
+  devise:
+    sessions:
+      user:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+    registrations:
+      user:
+        signed_up: "アカウント登録が完了しました"
+        updated: "アカウント情報を更新しました"
+        destroyed: "アカウントを削除しました"
+    confirmations:
+      confirmed: "メールアドレスが確認できました"
+      send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分後に送信されます"
+      send_instructions: "パスワード再設定用のメールを数分後に送信します"
+      new:
+        title: "パスワード再設定"
+      edit:
+        title: "パスワードを変更"
+    passwords:
+      no_token: "このページにはアクセスできません。パスワード再設定メールのリンクからアクセスされた場合には、URLが正しくないか、期限が切れている可能性があります。新しいパスワード再設定メールを要求してください"
+      send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分後に送信されます"
+      send_instructions: "パスワード再設定用のメールを数分後に送信します"
+      updated: "パスワードを正しく変更しました"
+      updated_not_active: "パスワードを正しく変更しました"
+      new:
+        title: "パスワード再設定"
+      edit:
+        title: "パスワードを変更"
+    mailer:
+      confirmation_instructions:
+        subject: "アカウントの確認手続きを完了してください"
+      reset_password_instructions:
+        subject: "パスワードの再設定について"
   activerecord:
     attributes:
       post:
