@@ -2,7 +2,6 @@
 
     <div class="profile-header">
         <%= link_to "プロフィール編集", edit_user_registration_path, class: "profile-edit-link" %>
-
         <div class="avatar">
             <% if @user.avatar&.attached? %>
                 <%= image_tag @user.avatar.variant(resize_to_fill: [96, 96]), class: "avatar-img" %>
