@@ -50,7 +50,7 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
     @posts = @posts.where(height_range: @height_range) if @height_range.present?
 
     @categories = Category.order(:name)
-    @tags = Tag.order(:name)
+    @tags = Tag.joins(:posts).distinct.order(:name)
     @style_categories = User.style_categories
     @height_ranges = User.height_ranges
   end
