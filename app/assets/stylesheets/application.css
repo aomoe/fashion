@@ -1160,3 +1160,115 @@ h3 {
     padding: 30px 0;
     color: #999;
 }
+
+/* 検索フォームのスタイル */
+.search-container {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #fef2f2;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.search-input-group {
+    flex: 1;
+}
+
+.search-input {
+    width: 85%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.35-4.35'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 16px;
+    padding-left: 2.5rem;
+}
+
+.search-input::placeholder {
+    color: #9ca3af;
+}
+
+.filter-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: white;
+    color: #6b7280;
+    font-size: 0.875rem;
+    min-width: 100px;
+    cursor: pointer;
+}
+
+.search-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #fecaca;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-button:hover {
+    background-color: #fca5a5;
+}
+
+/* 検索結果情報のスタイル */
+.search-results-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.applied-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* 右寄りに配置 */
+}
+
+.filter-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #e9ecef;
+    color: #495057;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.clear-filters {
+    padding: 0.5rem 1rem;
+    background-color: #e5989f;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.clear-filters:hover {
+    background-color: #5a6268;
+    color: white;
+    text-decoration: none;
+}
