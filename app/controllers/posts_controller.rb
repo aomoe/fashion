@@ -28,6 +28,31 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.includes(:user)
+
+    @keyword = params[:keyword]
+    @category_id = params[:category_id]
+    @tag_id = params[:tag_id]
+    @style_category = params[:style_category]
+    @height_range = params[:height_range]
+
+    if @keyword.present?
+      keyword_posts = Post.joins(:user).where(
+        "posts.title LIKE ? OR posts.body LIKE ? OR users.name LIKE ?",
+        "%#{@keyword}%",
+        "%#{@keyword}%",
+        "%#{@keyword}%"
+      )
+      @posts = @posts.where(id: keyword_posts.select(:id))
+    end
+    @posts = @posts.joins(:categories).where(categories: { id: @category_id }) if @category_id.present?
+    @posts = @posts.joins(:tags).where(tags: { id: @tag_id }) if @tag_id.present?
+    @posts = @posts.where(style_category: @style_category) if @style_category.present?
+    @posts = @posts.where(height_range: @height_range) if @height_range.present?
+
+    @categories = Category.order(:name)
+    @tags = Tag.joins(:posts).distinct.order(:name)
+    @style_categories = User.style_categories
+    @height_ranges = User.height_ranges
   end
 
   def show;end

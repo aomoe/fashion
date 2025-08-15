@@ -1,0 +1,23 @@
+<% if @keyword.present? || @category_id.present? || @tag_id.present? || @style_category.present? || @height_range.present? %>
+    <div class="search-results-info">
+        <h3>検索結果 <%= @posts.count %>件</h3>
+        <div class="applied-filters">
+            <% if @keyword.present? %>
+                <span class="filter-tag">キーワード: <%= @keyword %></span>
+            <% end %>
+            <% if @category_id.present? %>
+                <span class="filter-tag">カテゴリ: <%= Category.find(@category_id).name %></span>
+            <% end %>
+            <% if @tag_id.present? %>
+                <span class="filter-tag">タグ: <%= Tag.find(@tag_id).name %></span>
+            <% end %>
+            <% if @style_category.present? %>
+                <span class="filter-tag">骨格: <%= enum_display_name(User, :style_category, @style_category) %></span>
+            <% end %>
+            <% if @height_range.present? %>
+                <span class="filter-tag">身長: <%= enum_display_name(User, :height_range, @height_range) %></span>
+            <% end %>
+            <%= link_to "検索条件をクリア", posts_path, class: "clear-filters" %>
+        </div>
+    </div>
+<% end %>
