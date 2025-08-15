@@ -1,0 +1,59 @@
+<div class="mypage">
+
+    <div class="profile-header">
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "profile-edit-link" %>
+
+        <div class="avatar">
+            <% if @user.avatar&.attached? %>
+                <%= image_tag @user.avatar.variant(resize_to_fill: [96, 96]), class: "avatar-img" %>
+            <% else %>
+                <%= image_tag "icon.png", width: 96, height: 96, class: "avatar-img" %>
+            <% end %>
+        </div>
+
+        <div class="profile-meta">
+            <div class="username"><%= @user.name %></div>
+            <div class="stats"><%= "#{@my_posts.size}photo / #{@received_likes_count}like" %></div>
+        </div>
+
+        <div class="profile-actions">
+            <%= link_to "+ 投稿スタート", new_post_path, class: "btn primary start-post" %>
+        </div>
+    </div>
+
+    <div data-controller="tabs" class="tabs">
+        <div class="tab-list">
+            <button data-action="click->tabs#switch" data-tabs-name="photo" class="tab is-active">My Photo</button>
+            <button data-action="click->tabs#switch" data-tabs-name="like" class="tab">My Like</button>
+        </div>
+
+        <div data-tabs-target="panel" data-tabs-name="photo" class="panel is-active">
+            <div class="grid">
+                <% @my_posts.each do |post| %>
+                    <%= link_to post_path(post), class: "grid-item" do %>
+                        <% if post.image.attached? %>
+                            <%= image_tag post.image.variant(resize_to_fill: [240,300]) %>
+                        <% else %>
+                            <div class="no-image">投稿した画像はありません</div>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+
+        <div data-tabs-target="panel" data-tabs-name="like" class="panel">
+            <div class="grid">
+                <% @liked_posts.each do |post| %>
+                    <%= link_to post_path(post), class: "grid-item" do %>
+                        <% if post.image.attached? %>
+                            <%= image_tag post.image.variant(resize_to_fill: [240, 300]) %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+            <% if @liked_posts.blank? %>
+                <p class="empty-like">いいねをした投稿はありません</p>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -4,19 +4,19 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
     # omniauth_callbacks: 'users/omniauth_callbacks'
-  }, skip: [ :registrations, :sessions ]
+  }
 
-  devise_scope :user do
-    get "users/sign_in", to: "users/sessions#new", as: :new_user_session
-    post "users/sign_in", to: "users/sessions#create", as: :user_session
-    delete "users/sign_out", to: "users/sessions#destroy", as: :destroy_user_session
-    get "users/sign_out", to: "users/sessions#destroy"
-    get "users/sign_up", to: "users/registrations#new", as: :new_user_registration
-    post "users", to: "users/registrations#create", as: :user_registration
-    get "users/edit", to: "users/registrations#edit", as: :edit_user_registration
-    put "users", to: "users/registrations#update"
-    delete "users", to: "users/registrations#destroy"
-  end
+  # devise_scope :user do
+  #   get "users/sign_in", to: "users/sessions#new", as: :new_user_session
+  #   post "users/sign_in", to: "users/sessions#create", as: :user_session
+  #   delete "users/sign_out", to: "users/sessions#destroy", as: :destroy_user_session
+  #   get "users/sign_out", to: "users/sessions#destroy"
+  #   get "users/sign_up", to: "users/registrations#new", as: :new_user_registration
+  #   post "users", to: "users/registrations#create", as: :user_registration
+  #   get "users/edit", to: "users/registrations#edit", as: :edit_user_registration
+  #   put "users", to: "users/registrations#update"
+  #   delete "users", to: "users/registrations#destroy"
+  # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -29,4 +29,5 @@ Rails.application.routes.draw do
 
   root to: "home#top"
   resources :posts
+  get "mypage", to: "users#show"
 end

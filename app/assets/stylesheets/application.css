@@ -919,3 +919,123 @@ h3 {
 .post-card-link:hover .post-card {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
+
+/* マイページ */
+.mypage {
+    max-width: 1100px;
+    margin: 0 auto 80px auto;
+}
+
+.profile-header {
+    position: relative;
+    border-radius: 18px;
+    padding: 40px 20px 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-edit-link {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.mypage .avatar-img {
+    border-radius: 9999px;
+    object-fit: cover;
+    width: 96px;
+    height: 96px;
+    background: #fff;
+}
+
+.profile-meta .username {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.profile-meta .stats {
+    color: #666;
+    font-size: 14px;
+}
+
+.profile-actions .start-post {
+    margin-top: 8px;
+}
+
+.btn.primary {
+    background: #f8b6be;
+    color: #000;
+    border: none;
+    border-radius: 18px;
+}
+
+.tabs {
+    background: #fff;
+    border-radius: 16px;
+    margin-top: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.tab-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.tabs .tab {
+    background: transparent;
+    border: 0;
+    padding: 16px 12px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #bbb;
+    cursor: pointer;
+}
+
+.tabs .tab.is-active {
+    color: #000;
+}
+
+.panel {
+    display: none;
+    border-top: 1px solid #e6e6e6;
+}
+
+.panel.is-active {
+    display: block;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 24px;
+}
+
+.grid-item {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #e9e2e2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.empty-like {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+}
