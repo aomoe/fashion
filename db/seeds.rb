@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Default categories for posts (idempotent)
+%w[トップス パンツ デニム スカート ワンピース アウター シューズ バッグ アクセサリー 小物].each do |name|
+  Category.find_or_create_by!(name: name)
+end

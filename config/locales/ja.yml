@@ -2,10 +2,27 @@ ja:
   devise:
     failure:
       invalid: "メールアドレスまたはパスワードが違います。"
+      invalid_authentication_keys: "認証キーが無効です。"
+      not_found_in_database: "メールアドレスが見つかりません。"
+      already_authenticated: "既にログインしています。"
+      unauthenticated: "ログインが必要です。"
+      unconfirmed: "メールアドレスの確認が完了していません。"
+      locked: "アカウントがロックされています。"
+      inactive: "アカウントが有効化されていません。"
+      timeout: "セッションがタイムアウトしました。再度ログインしてください。"
+      last_attempt: "アカウントがロックされる前に、もう一度ログインを試してください。"
+      not_a_navigator_format: "認証キーが無効です。"
+      timeout_in: "%{time}分後にセッションがタイムアウトします。"
     sessions:
       user:
         signed_in: "ログインしました"
         signed_out: "ログアウトしました"
+        already_signed_out: "既にログアウトしています。"
+      new:
+        title: "ログイン"
+        submit: "ログイン"
+        sign_up: "アカウント登録"
+        forgot_password: "パスワードを忘れた場合"
     registrations:
       user:
         signed_up: "アカウント登録が完了しました"

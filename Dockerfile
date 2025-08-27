@@ -25,6 +25,10 @@ ENV RAILS_ENV="production" \
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
+# Allow overriding Active Storage service during build (to avoid AWS at compile time)
+ARG ACTIVE_STORAGE_SERVICE=local
+ENV ACTIVE_STORAGE_SERVICE=${ACTIVE_STORAGE_SERVICE}
+
 # Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config libpq-dev && \
