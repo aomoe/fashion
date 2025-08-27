@@ -1,5 +1,14 @@
 <div class="post-form-container">
     <%= form_with model: post, local: true do |f| %>
+    <% if post.errors.any? %>
+        <div id="error_explanation" data-turbo-cache="false">
+            <ul class="error-text">
+            <% post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
     <div class="image-section" data-controller="image-preview">
         <div class="image-card">
             <div class="image-placeholder" data-image-preview-target="placeholder" style="<%= 'display:none;' if post.image.attached? %>">

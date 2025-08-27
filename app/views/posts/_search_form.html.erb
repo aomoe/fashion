@@ -19,12 +19,12 @@
                 { class: "filter-select" } %>
 
             <%= f.select :style_category,
-                options_for_select(@style_categories.map { |k, v| [enum_display_name(User, :style_category, k), k] }, @style_category),
+                options_for_select(@style_categories.map { |k, v| [enum_display_name(Post, :style_category, k), k] }, @style_category),
                 { prompt: "骨格" },
                 { class: "filter-select" } %>
 
             <%= f.select :height_range,
-                options_for_select(@height_ranges.map { |k, v| [enum_display_name(User, :height_range, k), k] }, @height_range),
+                options_for_select(@height_ranges.map { |k, v| [enum_display_name(Post, :height_range, k), k] }, @height_range),
                 { prompt: "身長" },
                 { class: "filter-select" } %>
         </div>

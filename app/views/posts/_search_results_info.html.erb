@@ -12,10 +12,10 @@
                 <span class="filter-tag">タグ: <%= Tag.find(@tag_id).name %></span>
             <% end %>
             <% if @style_category.present? %>
-                <span class="filter-tag">骨格: <%= enum_display_name(User, :style_category, @style_category) %></span>
+                <span class="filter-tag">骨格: <%= enum_display_name(Post, :style_category, @style_category) %></span>
             <% end %>
             <% if @height_range.present? %>
-                <span class="filter-tag">身長: <%= enum_display_name(User, :height_range, @height_range) %></span>
+                <span class="filter-tag">身長: <%= enum_display_name(Post, :height_range, @height_range) %></span>
             <% end %>
             <%= link_to "検索条件をクリア", posts_path, class: "clear-filters" %>
         </div>

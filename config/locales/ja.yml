@@ -1,5 +1,7 @@
 ja:
   devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが違います。"
     sessions:
       user:
         signed_in: "ログインしました"
@@ -33,7 +35,25 @@ ja:
       reset_password_instructions:
         subject: "パスワードの再設定について"
   activerecord:
+    errors:
+      messages:
+        taken: "はすでに存在します"
+        blank: "を入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        too_short: "は%{count}文字以上で入力してください"
+        wrong_length: "は%{count}文字で入力してください"
+        confirmation: "と%{attribute}の入力が一致しません"
+        other_than: "は%{count}以外の値にしてください"
     attributes:
+      user:
+        name: "ユーザーネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認)"
+        current_password: "現在のパスワード"
+        style_category: "スタイルカテゴリ"
+        height_range: "身長範囲"
+        avatar: "アバター"
       post:
         style_category:
           straight: "ストレート"
@@ -48,17 +68,10 @@ ja:
           range_170_175: "170~175㎝"
           range_175_180: "175~180㎝"
           over_180: "180㎝以上"
-      user:
-        style_category:
-          straight: "ストレート"
-          wave: "ウェーブ"
-          natural: "ナチュラル"
-        height_range:
-          under_150: "150㎝未満"
-          range_150_155: "150~155㎝"
-          range_155_160: "155~160㎝"
-          range_160_165: "160~165㎝"
-          range_165_170: "165~170㎝"
-          range_170_175: "170~175㎝"
-          range_175_180: "175~180㎝"
-          over_180: "180㎝以上"
+        title: "タイトル"
+        content: "内容"
+        image: "画像"
+      category:
+        name: "カテゴリ名"
+      tag:
+        name: "タグ名"
