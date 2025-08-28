@@ -15,7 +15,7 @@
             <span class="image-icon">画像なし</span>
             </div>
 
-            <% if post.image.attached? %>
+            <% if post.persisted? && post.image.attached? %>
                 <img data-image-preview-target="preview"
                     src="<%= url_for(post.image) %>"
                     alt="preview"
@@ -47,7 +47,7 @@
     </div>
 
     <div class="title-section">
-        <label class="title-label">タイトル</label>
+        <label class="title-label">*タイトル</label>
         <%= f.text_field :title, class: "title-textarea" %>
     </div>
 

@@ -20,6 +20,8 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
       redirect_to posts_path
       flash[:notice] = "投稿しました"
     else
+      @post.style_category = current_user.style_category
+      @post.height_range = current_user.height_range
       @categories = Category.order(:name)
       render :new, status: :unprocessable_entity
       flash.now[:alert] = "投稿に失敗しました"
