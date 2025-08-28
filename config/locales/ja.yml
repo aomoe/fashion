@@ -1,18 +1,18 @@
 ja:
   devise:
     failure:
-      invalid: "メールアドレスまたはパスワードが違います。"
-      invalid_authentication_keys: "認証キーが無効です。"
-      not_found_in_database: "メールアドレスが見つかりません。"
-      already_authenticated: "既にログインしています。"
-      unauthenticated: "ログインが必要です。"
-      unconfirmed: "メールアドレスの確認が完了していません。"
-      locked: "アカウントがロックされています。"
-      inactive: "アカウントが有効化されていません。"
-      timeout: "セッションがタイムアウトしました。再度ログインしてください。"
-      last_attempt: "アカウントがロックされる前に、もう一度ログインを試してください。"
-      not_a_navigator_format: "認証キーが無効です。"
-      timeout_in: "%{time}分後にセッションがタイムアウトします。"
+        invalid: "メールアドレスまたはパスワードが違います。"
+        invalid_authentication_keys: "認証キーが無効です。"
+        not_found_in_database: "メールアドレスが見つかりません。"
+        already_authenticated: "既にログインしています。"
+        unauthenticated: "ログインが必要です。"
+        unconfirmed: "メールアドレスの確認が完了していません。"
+        locked: "アカウントがロックされています。"
+        inactive: "アカウントが有効化されていません。"
+        timeout: "セッションがタイムアウトしました。再度ログインしてください。"
+        last_attempt: "アカウントがロックされる前に、もう一度ログインを試してください。"
+        not_a_navigator_format: "認証キーが無効です。"
+        timeout_in: "%{time}分後にセッションがタイムアウトします。"
     sessions:
       user:
         signed_in: "ログインしました"
@@ -51,11 +51,17 @@ ja:
         subject: "アカウントの確認手続きを完了してください"
       reset_password_instructions:
         subject: "パスワードの再設定について"
+  errors:
+    format: "%{message}"
   activerecord:
     errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "登録できません。入力を確認してください"
       messages:
-        taken: "はすでに存在します"
-        blank: "を入力してください"
+        blank: "%{attribute}を入力してください"
         too_long: "は%{count}文字以内で入力してください"
         too_short: "は%{count}文字以上で入力してください"
         wrong_length: "は%{count}文字で入力してください"
