@@ -120,7 +120,7 @@ h3 {
 
 .text-center {
     margin-top: 25px;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
 }
 
@@ -170,12 +170,16 @@ h3 {
 .nav-link {
     color: #000;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
     padding: 8px 12px;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
     white-space: nowrap;
+}
+
+.logout-button {
+    font-family: 'Georgia', serif;
 }
 
 .nav-link:hover {
@@ -1272,3 +1276,57 @@ h3 {
     color: white;
     text-decoration: none;
 }
+
+/* 投稿詳細ページのアクションボタン */
+.post-action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #da190b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: #ecb9c1;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #de8b9f;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

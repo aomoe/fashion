@@ -1,5 +1,8 @@
 <%= render 'search_form' %>
 <%= render 'search_results_info' %>
+<div class="profile-actions">
+  <%= link_to "+ 投稿スタート", new_post_path, class: "btn primary start-post" %>
+</div>
 
 <div class="posts-grid">
   <% @posts.each do |post| %>
