@@ -29,13 +29,22 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
   end
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(:user).order(created_at: :desc)
 
+    @categories = Category.order(:name)
+    @tags = Tag.joins(:posts).distinct.order(:name)
+    @style_categories = User.style_categories
+    @height_ranges = User.height_ranges
+  end
+
+  def search
     @keyword = params[:keyword]
     @category_id = params[:category_id]
     @tag_id = params[:tag_id]
     @style_category = params[:style_category]
     @height_range = params[:height_range]
+
+    @posts = Post.includes(:user)
 
     if @keyword.present?
       keyword_posts = Post.joins(:user).where(
@@ -55,6 +64,8 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
     @tags = Tag.joins(:posts).distinct.order(:name)
     @style_categories = User.style_categories
     @height_ranges = User.height_ranges
+
+    render :index
   end
 
   def show;end
