@@ -959,11 +959,6 @@ h3 {
     background-color: #f8f9fa;
 }
 
-/* いいねボタン */
-.like-button {
-    margin-top: 10px;
-}
-
 /* 投稿説明 */
 .post-description {
     margin-top: 10px;
@@ -1039,20 +1034,30 @@ h3 {
     transform: translateY(-1px);
 }
 
-/* 投稿カードリンク */
-.post-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+/* 投稿カード全体のスタイル */
+.post-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: white;
 }
 
-.post-card-link:hover {
+.post-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.post-card-link:hover .post-card {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  /* 画像リンクのスタイル */
+.post-image-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-image-link:hover {
+    text-decoration: none;
 }
 
 /* マイページ */
@@ -1518,4 +1523,73 @@ h3 {
     .body-textarea {
         min-height: 120px;
     }
+}
+
+@media (max-width: 768px) {
+    .like-button {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    .like-button .heart {
+        font-size: 18px;
+    }
+
+    .like-section-detail .like-button {
+        font-size: 20px;
+        padding: 10px 16px;
+    }
+
+    .like-section-detail .heart {
+        font-size: 24px;
+    }
+}
+
+/* いいねボタンのスタイル */
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
+
+.like-button.liked .like-count {
+    color: #e91e63;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.like-button .like-count {
+    color: #666;
+}
+
+.like-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-section-detail {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* 投稿一覧での配置調整 */
+.post-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.like-section {
+    display: flex;
+    align-items: center;
 }

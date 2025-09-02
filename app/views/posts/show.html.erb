@@ -70,6 +70,10 @@
         <% end %>
     </div>
 
+    <div class="like-section-detail">
+        <%= like_button_for(@post) %>
+    </div>
+
     <div class="post-actions">
         <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-secondary" %>
     </div>
