@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "likes/create"
+  get "likes/destroy"
   # Devise routes for user authentication
   devise_for :users, controllers: {
     sessions: "users/sessions",
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
 
   root to: "home#top"
   resources :posts do
+    resource :like, only: [:create, :destroy]
     collection do
       get :search
     end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_one_attached :avatar
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -25,6 +26,14 @@ class User < ApplicationRecord
     range_175_180: 6,
     over_180: 7
   }
+
+  def liked_posts
+    Post.joins(:likes).where(likes: { user_id: id })
+  end
+
+  def liked_posts_count
+    likes.count
+  end
 
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_create do |user|
