@@ -1045,10 +1045,10 @@ h3 {
 
 .post-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-  /* 画像リンクのスタイル */
+/* 画像リンクのスタイル */
 .post-image-link {
     display: block;
     text-decoration: none;
@@ -1544,6 +1544,105 @@ h3 {
         font-size: 24px;
     }
 }
+
+/* パスワードリセットページ専用スタイル */
+.password-reset-container {
+    background-color: #F8F2F2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 60px 20px 20px;
+    position: relative;
+}
+
+.password-reset-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.password-reset-card h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.password-reset-card .field {
+    margin-bottom: 25px;
+}
+
+.password-reset-card .field label {
+    display: block;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-reset-card .field input[type="password"],
+.password-reset-card .field input[type="email"] {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fcf0f0;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    color: #000;
+}
+
+.password-reset-card .field input[type="password"]::placeholder,
+.password-reset-card .field input[type="email"]::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+.password-reset-card .field input[type="password"]:focus,
+.password-reset-card .field input[type="email"]:focus {
+    background-color: #f8e8e8;
+}
+
+.password-reset-card .actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.password-reset-card .actions input[type="submit"] {
+    background-color: #f0a0a0;
+    color: #ffffff;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.password-reset-card .actions input[type="submit"]:hover {
+    background-color: #e89090;
+}
+
+
 
 /* いいねボタンのスタイル */
 .like-button {
