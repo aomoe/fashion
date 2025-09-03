@@ -1596,7 +1596,9 @@ h3 {
 }
 
 .password-reset-card .field input[type="password"],
-.password-reset-card .field input[type="email"] {
+.password-reset-card .field input[type="email"],
+.password-reset-card .field_with_errors input[type="password"],
+.password-reset-card .field_with_errors input[type="email"] {
     width: 100%;
     padding: 12px 12px 12px 40px;
     border: none;
@@ -1642,7 +1644,28 @@ h3 {
     background-color: #e89090;
 }
 
+/* field_with_errorsクラス自体の調整 */
+.password-reset-container .password-reset-card .field_with_errors {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
+/* エラー時のフィールドサイズを強制的に統一 */
+.password-reset-container .password-reset-card .field_with_errors .input-wrapper input[type="password"],
+.password-reset-container .password-reset-card .field_with_errors .input-wrapper input[type="email"],
+.password-reset-container .password-reset-card .input-wrapper .field_with_errors input[type="password"],
+.password-reset-container .password-reset-card .input-wrapper .field_with_errors input[type="email"],
+.password-reset-container .password-reset-card .field_with_errors input[type="password"],
+.password-reset-container .password-reset-card .field_with_errors input[type="email"] {
+    width: 100% !important;
+    padding: 12px 12px 12px 40px !important;
+    border: none !important;
+    background-color: #f8e8e8 !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+}
 
 /* いいねボタンのスタイル */
 .like-button {
