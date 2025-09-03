@@ -54,7 +54,13 @@
         </div>
 
         <div class="profile-field">
-          <%= f.label :style_category, "骨格", class: "field-label" %>
+          <div class="field-label-with-link">
+            <%= f.label :style_category, "骨格", class: "field-label" %>
+            <span class="profile-note-inline">
+              自分の骨格タイプが知りたい方は、
+              <%= link_to "こちら", "https://fashion.or.jp/stylecheck/", target: "_blank", rel: "noopener" %>
+            </span>
+          </div>
           <%= f.select :style_category,
                 options_for_select(
                   User.style_categories.map { |k, v| [enum_display_name(resource, :style_category, k), k] },
@@ -64,8 +70,8 @@
         </div>
 
         <div class="profile-note">
-          自分の骨格タイプが知りたい人は、
-          <%= link_to "こちら", "https://fashion.or.jp/stylecheck/", target: "_blank", rel: "noopener" %>
+          パスワードを変更したい方は、
+          <%= link_to "こちら", new_user_password_path %>
         </div>
       </div>
     </div>

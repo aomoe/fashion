@@ -1,4 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
+  skip_before_action :require_no_authentication, only: %i[new create]
   def create
     email = params.dig(resource_name, :email).to_s.strip
     if email.blank?
