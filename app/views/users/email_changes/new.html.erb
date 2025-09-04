@@ -1,0 +1,44 @@
+<h3>My Fashion</h3>
+<div class="email-change-container">
+    <h2>メールアドレス変更</h2>
+
+    <div class="email-change-warning">
+        <strong>注意：</strong>
+        <ul>
+            <li>新しいメールアドレスに確認メールが送信されます</li>
+            <li>確認完了まで現在のメールアドレスが有効です</li>
+            <li>確認メールのリンクをクリックして変更を完了してください</li>
+        </ul>
+    </div>
+
+    <%= form_with model: current_user, url: change_email_path, method: :patch, local: true, data: { turbo: false } do |f| %>
+        <% if current_user.errors.any? %>
+            <div class="email-change-error">
+                <ul>
+                    <% current_user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <div class="email-change-field">
+            <%= f.label :email, "現在のメールアドレス" %>
+            <%= f.email_field :email, value: current_user.email, readonly: true, class: "readonly" %>
+        </div>
+
+        <div class="email-change-field">
+            <%= f.label :email, "新しいメールアドレス" %>
+            <%= f.email_field :email, value: "", placeholder: "新しいメールアドレスを入力",
+                              required: true %>
+        </div>
+
+        <div class="email-change-actions">
+            <%= f.submit "確認メールを送信" %>
+        </div>
+    <% end %>
+
+    <div class="email-change-cancel">
+        <%= link_to "キャンセル", edit_user_registration_path, class: "email-change-cancel-button" %>
+    </div>
+</div>
