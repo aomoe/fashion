@@ -40,7 +40,19 @@
 
         <div class="profile-field">
           <%= f.label :email, "メールアドレス", class: "field-label" %>
-          <%= f.email_field :email, autocomplete: "email", readonly: true, class: "underline-input" %>
+          <div class="email-field-container">
+            <%= f.email_field :email, autocomplete: "email", readonly: true, class: "underline-input" %>
+            <%= link_to "変更", change_email_path, class: "email-change-button" %>
+          </div>
+
+          <%if current_user.unconfirmed_email.present? %>
+            <div class="alert alert-info mt-2">
+              <small>
+                新しいメールアドレス「<%= current_user.unconfirmed_email %>」の確認待ちです。
+                確認メールをご確認ください。
+              </small>
+            </div>
+          <% end %>
         </div>
 
         <div class="profile-field">

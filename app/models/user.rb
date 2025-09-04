@@ -3,12 +3,16 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_one_attached :avatar
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable,
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable,
          omniauth_providers: [ :google_oauth2 ]
 
   validates :name, presence: true, length: { maximum: 50 }
+  validates :email, format: {
+    with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
+    message: '有効なメールアドレスを入力してください'
+  }
 
   enum :style_category, {
     straight: 0,

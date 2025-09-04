@@ -51,6 +51,8 @@ ja:
         subject: "アカウントの確認手続きを完了してください"
       reset_password_instructions:
         subject: "パスワードの再設定について"
+      email_change:
+        subject: "メールアドレス変更完了"
   errors:
     format: "%{message}"
   activerecord:

@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: "users/sessions",
     registrations: "users/registrations",
-    passwords: "users/passwords"
+    passwords: "users/passwords",
+    confirmations: "users/confirmations"
     # omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  devise_scope :user do
+    get 'users/change_email', to: 'users/email_changes#new', as: :change_email
+    patch 'users/change_email', to: 'users/email_changes#create'
+    get 'users/confirm_email/:confirmation_token',
+        to: 'users/email_changes#confirm', as: :confirm_email_change
+  end
 
   # devise_scope :user do
   #   get "users/sign_in", to: "users/sessions#new", as: :new_user_session
