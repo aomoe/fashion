@@ -46,6 +46,10 @@ ja:
         title: "パスワード再設定"
       edit:
         title: "パスワードを変更"
+    omniauth_callbacks:
+      user:
+        success: "Googleでログインしました"
+      success: "Googleでログインしました"
     mailer:
       confirmation_instructions:
         subject: "アカウントの確認手続きを完了してください"

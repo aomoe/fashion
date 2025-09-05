@@ -28,8 +28,10 @@
         <% end %>
     <% end %>
 </div>
-    <div class="text-center">
-    さらにコーディネートがみたい方は、
-    <%= link_to "新規登録", new_user_registration_path %>
-    </div>
+    <% unless user_signed_in? %>
+        <div class="text-center">
+        さらにコーディネートがみたい方は、
+        <%= link_to "新規登録", new_user_registration_path %>
+        </div>
+    <% end %>
 </div>

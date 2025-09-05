@@ -31,6 +31,17 @@
             <%= f.submit "新規登録" %>
           </div>
       <% end %>
+
+      <div class="divider">
+        <span class="divider-text">または</span>
+      </div>
+
+      <div class="text-center">
+        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "google-login-btn", method: :post, form: { data: { turbo: false } } do %>
+          <span class="google-icon"></span> Googleで新規登録
+        <% end %>
+      </div>
+
       <div class="text-center">
         アカウントを作成することで
         <%= link_to  "利用規約", "#" %>
