@@ -40,12 +40,20 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(email: auth.info.email).first_or_create do |user|
+    user = where(email: auth.info.email).first_or_create do |user|
       user.name = auth.info.name
       user.email = auth.info.email
       user.provider = auth.provider
       user.uid = auth.uid
       user.password = Devise.friendly_token[0, 20]
+      # Google認証の場合はメール確認をスキップ
+      user.skip_confirmation!
     end
+    # 既存ユーザーの場合も確認済みにする
+    if user.persisted? && !user.confirmed?
+      user.skip_confirmation!
+      user.save!
+    end
+    user
   end
 end

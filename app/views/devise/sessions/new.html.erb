@@ -18,10 +18,22 @@
       <%= f.submit "ログイン" %>
     </div>
   <% end %>
+
+    <div class="divider">
+      <span class="divider-text">または</span>
+    </div>
+
+    <div class="text-center">
+      <%= button_to user_google_oauth2_omniauth_authorize_path, class: "google-login-btn", method: :post, form: { data: { turbo: false } } do %>
+        <span class="google-icon"></span> Googleでログイン
+      <% end %>
+    </div>
+
     <div class="text-center">
       アカウントをお持ちでない方は
       <%= link_to "新規登録", new_user_registration_path %>
     </div>
+
     <div class="text-center">
       パスワードを忘れた方は
       <%= link_to "こちら", new_user_password_path %>
