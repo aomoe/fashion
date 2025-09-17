@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["input", "preview", "placeholder"]
+    static targets = ["input", "preview", "placeholder", "brightnessSlider"]
 
     connect() {
         this.updateDisplay()
+        this.initializeBrightness()
     }
 
     show() {
@@ -21,8 +22,27 @@ export default class extends Controller {
             this.previewTarget.src = e.target.result
             this.previewTarget.style.display = ""
             if (this.hasPlaceholderTarget) this.placeholderTarget.style.display = "none"
+            this.applyBrightness()
         }
         reader.readAsDataURL(file)
+    }
+
+    initializeBrightness() {
+        if (this.hasBrightnessSliderTarget) {
+            this.applyBrightness()
+        }
+    }
+    adjustBrightness() {
+        this.applyBrightness()
+    }
+
+    applyBrightness() {
+        if (!this.hasBrightnessSliderTarget || !this.hasPreviewTarget) return
+
+        const brightnessValue = this.brightnessSliderTarget.value
+        // スライダー値50を基準点とし、正確に標準の明るさ（1.0）に設定
+        const cssValue = (brightnessValue - 50) / 50 * 0.7 + 1.0
+        this.previewTarget.style.filter = `brightness(${cssValue})`
     }
 
     updateDisplay() {

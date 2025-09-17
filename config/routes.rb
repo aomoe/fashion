@@ -44,6 +44,10 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      post :preview_brightness
+    end
   end
+
   get "mypage", to: "users#show"
 end

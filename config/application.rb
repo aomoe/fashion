@@ -20,6 +20,11 @@ module Myapp
 
     config.i18n.available_locales = [:ja, :en]
 
+    # MiniMagick configuration
+    MiniMagick.configure do |config|
+      config.timeout = 30
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
