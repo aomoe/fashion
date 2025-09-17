@@ -2,8 +2,8 @@
     <div class="post-main-content">
 
         <div class="post-image-section">
-            <% if @post.image.attached? %>
-                <%= image_tag @post.image, class: "main-image" %>
+            <% if @post.display_image_url %>
+                <%= image_tag @post.display_image_url, class: "main-image" %>
             <% else %>
                 <div class="no-image">画像なし</div>
             <% end %>

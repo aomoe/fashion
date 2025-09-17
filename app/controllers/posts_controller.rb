@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :set_post, only: [:show, :edit, :update, :destroy, :preview_brightness]
 before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
     @post.style_category = current_user.style_category
     @post.height_range = current_user.height_range
+    @post.brightness_level = 50
     @categories = Category.order(:name)
   end
 
@@ -22,6 +23,7 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
     else
       @post.style_category = current_user.style_category
       @post.height_range = current_user.height_range
+      @post.brightness_level ||= 50
       @categories = Category.order(:name)
       render :new, status: :unprocessable_entity
       flash.now[:alert] = "投稿に失敗しました"
@@ -71,6 +73,7 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
   def show;end
 
   def edit
+    @post.brightness_level ||= 50
     @categories = Category.order(:name)
   end
 
@@ -82,8 +85,22 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
 
       redirect_to @post, notice: '更新しました'
     else
+      @post.brightness_level ||= 50
       @categories = Category.order(:name)
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def preview_brightness
+    brightness_level = params[:brightness_level].to_i
+
+    if @post.image.attached?
+      temp_processed_image = generate_temp_brightness_image(@post.image, brightness_level)
+      render json: {
+        preview_url: temp_processed_image
+      }
+    else
+      render json: { error: 'No image attached' }, status: 422
     end
   end
 
@@ -109,6 +126,33 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
   def authorize_post_owner!
     unless @post.user_id == current_user&.id
       redirect_to @post, alert: "編集権限がありません"
+    end
+  end
+
+  def generate_temp_brightness_image(image, brightness_level)
+    cache_key = "brightness_preview_#{image.blob.id}_#{brightness_level}"
+
+    Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+      temp_file = Tempfile.new(['origin', File.extname(image.filename.to_s)])
+      temp_file.binmode
+      temp_file.write(image.download)
+      temp_file.close
+
+      processed_temp = Tempfile.new(['preview', '.jpg'])
+
+      mini_image = MiniMagick::Image.open(temp_file.path)
+      brightness_value = brightness_level - 50
+      mini_image.modulate("#{100 + brightness_value},100,100")
+      mini_image.format('jpeg')
+      mini_image.write(processed_temp.path)
+
+      encoded_image = Base64.strict_encode64(File.read(processed_temp.path))
+      data_url = "data:image/jpeg;base64,#{encoded_image}"
+
+      temp_file.unlink
+      processed_temp.unlink
+
+      data_url
     end
   end
 end

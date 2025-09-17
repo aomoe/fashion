@@ -9,19 +9,21 @@
             </ul>
         </div>
     <% end %>
-    <div class="image-section" data-controller="image-preview">
+    <div class="image-section" data-controller="image-preview-imagemagick">
         <div class="image-card">
-            <div class="image-placeholder" data-image-preview-target="placeholder" style="<%= 'display:none;' if post.image.attached? %>">
+            <div class="image-placeholder" data-image-preview-imagemagick-target="placeholder" style="<%= 'display:none;' if post.image.attached? %>">
             <span class="image-icon">画像なし</span>
             </div>
 
-            <% if post.persisted? && post.image.attached? %>
-                <img data-image-preview-target="preview"
-                    src="<%= url_for(post.image) %>"
+            <% if post.persisted? && post.display_image_url %>
+                <img data-image-preview-imagemagick-target="preview"
+                    src="<%= post.display_image_url %>"
+                    data-original-url="<%= url_for(post.image) if post.image.attached? %>"
+                    data-post-id="<%= post.id if post.persisted? %>"
                     alt="preview"
                     style="max-width:100%; height:auto; border-radius:12px;" />
             <% else %>
-                <img data-image-preview-target="preview"
+                <img data-image-preview-imagemagick-target="preview"
                     alt="preview"
                     style="display:none; max-width:100%; height:auto; border-radius:12px;" />
             <% end %>
@@ -31,7 +33,14 @@
         <br>
         <div class="slider-row">
             <span class="icon-dim">1</span>
-            <%= f.range_field :brightness_level, min: 0, max: 100, value: @post.brightness_level || 50, class: "brightness-input" %>
+            <%= f.range_field :brightness_level,
+                min: 1, max: 100,
+                value: @post.brightness_level || 50,
+                class: "brightness-input",
+                data: {
+                    image_preview_imagemagick_target: "brightnessSlider",
+                    action: "input->image-preview-imagemagick#adjustBrightness"
+                } %>
             <span class="icon-bright">100</span>
         </div>
 
@@ -41,7 +50,7 @@
             <%= f.file_field :image,
                 accept: "image/*",
                 class: "hidden-file-input",
-                data: { image_preview_target: "input", action: "change->image-preview#show" } %>
+                data: { image_preview_imagemagick_target: "input", action: "change->image-preview-imagemagick#show" } %>
             </label>
         </div>
     </div>

@@ -41,6 +41,9 @@ Rails.application.configure do
   # Defaults to Amazon in production, but can be overridden for build steps.
   config.active_storage.service = (ENV["ACTIVE_STORAGE_SERVICE"] || "amazon").to_sym
 
+  MiniMagick.configure do |config|
+    config.timeout = 60
+  end
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
