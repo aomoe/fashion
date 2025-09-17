@@ -133,26 +133,22 @@ before_action :authorize_post_owner!, only: [:edit, :update, :destroy]
     cache_key = "brightness_preview_#{image.blob.id}_#{brightness_level}"
 
     Rails.cache.fetch(cache_key, expires_in: 1.hour) do
-      temp_file = Tempfile.new(['origin', File.extname(image.filename.to_s)])
-      temp_file.binmode
-      temp_file.write(image.download)
-      temp_file.close
+      Tempfile.open(['origin', File.extname(image.filename.to_s)]) do |temp_file|
+        temp_file.binmode
+        temp_file.write(image.download)
+        temp_file.close
 
-      processed_temp = Tempfile.new(['preview', '.jpg'])
+        Tempfile.open(['preview', '.jpg']) do |processed_temp|
+          mini_image = MiniMagick::Image.open(temp_file.path)
+          brightness_value = brightness_level - 50
+          mini_image.modulate("#{100 + brightness_value},100,100")
+          mini_image.format('jpeg')
+          mini_image.write(processed_temp.path)
 
-      mini_image = MiniMagick::Image.open(temp_file.path)
-      brightness_value = brightness_level - 50
-      mini_image.modulate("#{100 + brightness_value},100,100")
-      mini_image.format('jpeg')
-      mini_image.write(processed_temp.path)
-
-      encoded_image = Base64.strict_encode64(File.read(processed_temp.path))
-      data_url = "data:image/jpeg;base64,#{encoded_image}"
-
-      temp_file.unlink
-      processed_temp.unlink
-
-      data_url
+          encoded_image = Base64.strict_encode64(File.read(processed_temp.path))
+          "data:image/jpeg;base64,#{encoded_image}"
+        end
+      end
     end
   end
 end
